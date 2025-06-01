@@ -1,24 +1,33 @@
-Título do Projeto:
-Fundamentos de Machine Learning - Estudo de Algoritmos para Classificação e Regressão
+# Título do Projeto:
+# Fundamentos de Machine Learning - Ensaio de Machine Learning (Classificação, Regressão e Clusterização)
 
-Objetivo:
-Realizar ensaios comparativos com algoritmos de Machine Learning em cenários de classificação e regressão, a fim de entender o comportamento e desempenho de diferentes modelos frente a diferentes tipos de dados. A análise tem como propósito apoiar a escolha mais eficaz de algoritmos em projetos reais de consultoria da empresa Data Money.
+## Objetivo:
+Realizar ensaios comparativos com algoritmos de Machine Learning em cenários de classificação, regressão e clusterização, a fim de entender o comportamento e desempenho de diferentes modelos frente a diferentes tipos de dados. A análise tem como propósito apoiar a escolha mais eficaz de algoritmos em projetos reais de consultoria da empresa Data Money.
 
-Principais Bibliotecas Utilizadas:
+**observação:**
+1) Os dados utilizados foram pré-tratados e as técnicas e justificativas para tal não foram apresentadas.
+2) visando maior treinamento nas técnicas de codificação para a experimentação dos parâmetros foram usados loops for e resultados armazenados em bibliotecas que foram posteriormente convertidas em dataframe. Por isso RandomSeachCV e similares não foram usados.
+3) Os resultados poderiam ter sido melhores com a aplicação das técnicas de cross-validation, mas a proposta da disciplina foi de utilizar apenas o HoldOut.
+
+## Principais Bibliotecas Utilizadas:
 - numpy, pandas: manipulação de dados
-- scikit-learn: modelagem, métricas e pré-processamento
+- sklearn: modelagem, métricas
   - Modelos de Classificação:
     - KNeighborsClassifier
     - DecisionTreeClassifier
     - RandomForestClassifier
     - LogisticRegression
+
   - Modelos de Regressão:
     - LinearRegression, Lasso, Ridge, ElasticNet
     - DecisionTreeRegressor
     - RandomForestRegressor
-- matplotlib, seaborn: visualização (se utilizadas)
 
-Métricas Utilizadas:
+  - Modelos de Clusterização:
+    - K-means
+    - Affinity Propagation
+
+## Métricas Utilizadas:
 - Para Classificação:
   - accuracy_score
   - precision_score
@@ -27,15 +36,37 @@ Métricas Utilizadas:
 
 - Para Regressão:
   - mean_squared_error
+  - root_mean_squared_error
   - r2_score
+  - mean_absolute_error
+  - mean_absolute_percentage_error
 
-Resumo dos Resultados:
-- Os modelos de classificação foram avaliados com base em acurácia e demais métricas, mostrando comportamentos distintos de acordo com o balanceamento dos dados e complexidade do modelo.
-- Para problemas de regressão, a performance variou conforme o tipo de regressor usado e o grau de polinômio (quando aplicado).
-- Modelos como RandomForest (tanto para regressão quanto para classificação) apresentaram desempenho consistente, com bons resultados mesmo em dados com não linearidades.
+- Para Clusterização:
+  - silhouette score
 
-Discussão:
-- O estudo confirma a importância de avaliar múltiplos algoritmos em diferentes situações, uma vez que o desempenho depende fortemente da natureza dos dados.
-- Algoritmos mais simples como regressão linear ou árvores de decisão podem ser eficazes em cenários específicos, mas modelos mais robustos como RandomForest frequentemente superam em tarefas mais complexas.
-- O uso de métricas apropriadas e a verificação de balanceamento das classes são fundamentais para a interpretação correta dos resultados.
-- A experiência prática adquirida nesses ensaios permite maior assertividade na escolha de algoritmos em projetos de consultoria reais.
+## Resultados e Discussão
+### Classificação:
+- O modelo Decision Tree apresentou o melhor desempenho geral, com:
+
+- Acurácia de 94,8% — classifica corretamente a maioria das amostras.
+
+- F1-Score de 0.9403 — ótimo equilíbrio entre precisão e recall.
+
+- Precisão (0.9482) e Recall (0.9325) — baixa taxa de falsos positivos e alta capacidade de detecção de casos positivos.
+
+### Regressão:
+- O modelo Random Forest Regressor se destacou com:
+
+- Menor MAE (12.17) e RMSE (16.97) — previsões mais precisas.
+
+- Melhor R²_teste (0.408) — maior capacidade explicativa entre os modelos.
+
+### Clusterização:
+- O K-means (n_clusters=3) teve o melhor Silhouette Score (0.2329), superando o Affinity Propagation (0.2238).
+
+- K-means foi mais estável e prático, enquanto o Affinity Propagation se mostrou sensível ao parâmetro preference, gerando muitos clusters inconsistentes.
+
+- Conclusão: K-means é a melhor escolha para esse caso.
+
+Autor: Lucy Gomes de Souza
+Projeto Oriundo da disciplina de Princípios de Machine Learning da Comunidade DS.
